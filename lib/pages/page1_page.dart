@@ -1,7 +1,9 @@
+import 'package:estados/models/user.dart';
+import 'package:estados/services/user_service.dart';
 import 'package:flutter/material.dart';
 
 class Page1Page extends StatelessWidget {
-  const Page1Page({Key? key}) : super(key: key);
+  const Page1Page({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,14 @@ class Page1Page extends StatelessWidget {
       appBar: AppBar(
         title: Text('Page1'),
       ),
-      body: UserInfo(),
+      body: StreamBuilder(
+        stream: userService.userStream,
+        builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+          return snapshot.hasData
+          ? UserInfo(snapshot.data)
+          : Center(child: Text('No hay información del usuario'));
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, 'page2'),
         child: Icon(Icons.accessibility_new),
@@ -19,6 +28,10 @@ class Page1Page extends StatelessWidget {
 }
 
 class UserInfo extends StatelessWidget {
+
+  final User user;
+  const UserInfo (this.user);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,10 +45,10 @@ class UserInfo extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           Divider(),
           ListTile(
-            title: Text('Nombre: '),
+            title: Text('Nombre: ${ user.nombre}'),
           ),
           ListTile(
-            title: Text('Edad: '),
+            title: Text('Edad: ${ user.edad}'),
           ),
           Text('Profesiones',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),

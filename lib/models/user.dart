@@ -1,7 +1,10 @@
+import 'package:meta/meta.dart';
 class User {
-  late String nombre;
-  late int edad;
-  late List<String> profesiones;
+  String nombre;
+  int edad;
+  List<String> profesiones;
 
-  User({required this.nombre, required this.edad, required this.profesiones});
+  User({@required this.nombre, this.edad, this.profesiones})
+  :assert(nombre !=null);
+  //Assert gives us an error if there is something missing.
 }

@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
      initialRoute: 'page1',
      //Always remember only keep this in routes like here if you are using less than 4 routes.
-     //Otherwise implement a routes file, so we keep the main way more clean.
+     //Otherwise implement a routes file, so we keep the main way more
      routes: {
        'page1': (_) => Page1Page(),
        'page2': (_) => Page2Page()
