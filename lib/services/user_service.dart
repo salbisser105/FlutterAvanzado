@@ -8,7 +8,7 @@ class _UserService {
 
   //We need to use an stream to check if there are any changes in the information provided by the user. so it can reload and paint out the new info.
   //By default an stream is created by a single suscription or single listener 
-  //That means there can be only 1 person listenning to that stream. by the moment.
+  //That means there can be only 1 person listenning to that stream. at the moment.( 1 to 1 kind of communication)
   StreamController<User> _userStreamController = new StreamController<User>.broadcast();
 
 
